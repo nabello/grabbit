@@ -1,12 +1,23 @@
 language: java
 
+# need be superuser so as to successfully compile & install protobuf library
+sudo: true
+
+# make sure protobuf library is installed for build to succeed
+install:
+  - wget https://protobuf.googlecode.com/files/protobuf-2.4.1.tar.gz
+  - tar -xzvf protobuf-2.4.1.tar.gz
+  - cd protobuf-2.4.1
+  - ./configure --prefix=/usr
+  - make
+  - make check
+  - sudo make install
+  - cd ./../
+
 jdk:
   - oraclejdk7
   - oraclejdk8
   - openjdk7
-
-# Allow running on a container instead of a traditional VM
-sudo: false
 
 # show the logging of tests, and there's no need to run the daemon on a single-use container
 script: ./gradlew check -iS --no-daemon

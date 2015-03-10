@@ -34,7 +34,7 @@ allprojects {
 
         //Provides all Adobe AEM specific repos (like cq-workflow-console)
         maven {
-            url "http://repo.adobe.com/nexus/content/groups/public"
+            url "https://repo.adobe.com/nexus/content/groups/public"
         }
     }
 }
