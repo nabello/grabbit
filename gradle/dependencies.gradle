@@ -6,17 +6,17 @@ dependencies {
     // Used as part of the build to create the OSGI-INF/serviceComponents.xml file
     compile "org.apache.felix:org.apache.felix.scr.annotations:${scr_annotations_version}"
 
-    compile "com.day.cq.workflow:cq-workflow-console:${cq_version_workflow_console}"
-
     //Google libraries
     compile "com.google.guava:guava:${guava_version}"
 
     //For annotations like @Nonnull, etc.
     compile "com.google.code.findbugs:jsr305:${jsr305_version}"
 
-    // Apache Sling libraries
-    compile "org.apache.sling:org.apache.sling.api:${sling_api_version}"
-    compile "org.apache.sling:org.apache.sling.jcr.api:${sling_commons_version}"
+    // Adobe AEM API Uber library
+    compile "com.adobe.aem:aem-api:${cq_api_uber_jar_version}", {
+        exclude group: "org.slf4j", module: "slf4j-simple"
+        exclude group: "com.adobe.cq.testing", module: "cq-integration-testing"
+    }
 
     // Apache Felix libraries
     compile "org.apache.felix:org.osgi.core:${felix_osgi_version}"
@@ -29,7 +29,6 @@ dependencies {
 
     // Working with the JCR
     compile "javax.jcr:jcr:${jcr_version}"
-    compile "org.apache.jackrabbit:jackrabbit-jcr-commons:${jackrabbit_version}"
 
     // Logging
     compile "org.slf4j:slf4j-api:${slf4j_version}"
@@ -81,7 +80,6 @@ dependencies {
     }
 
     compile "org.apache.servicemix.bundles:org.apache.servicemix.bundles.protobuf-java:${servicemix_protobuf_java_version}"
-
 }
 
 // workaround for http://issues.gradle.org/browse/GRADLE-1682
